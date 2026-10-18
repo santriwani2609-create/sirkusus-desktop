@@ -29,10 +29,10 @@ import javax.swing.UIManager;
 
 public class FormPendaftaranKursus extends JFrame {
 
-    private final Color warnaLatar = new Color(248, 250, 252);
-    private final Color warnaHeader = new Color(0, 102, 204);
-    private final Color warnaProses = new Color(0, 102, 153);
-    private final Color warnaReset = new Color(255, 51, 51);
+private final Color warnaLatar = new Color(255, 249, 245);   // krem lembut
+private final Color warnaHeader = new Color(244, 143, 177);  // soft pink
+private final Color warnaProses = new Color(255, 213, 79);   // kuning pastel
+private final Color warnaReset = new Color(240, 98, 146);    // pink agak tegas
 
     private JPanel panelUtama;
     private JPanel panelHeader;
