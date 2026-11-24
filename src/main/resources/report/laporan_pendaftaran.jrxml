@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="laporan_pendaftaran" pageWidth="595" pageHeight="842"
+              columnWidth="535" leftMargin="30" rightMargin="30"
+              topMargin="30" bottomMargin="30">
+
+    <parameter name="P_ID_PENDAFTARAN" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+    </parameter>
+
+    <queryString>
+        <![CDATA[SELECT
+    p.id_pendaftaran,
+    p.tanggal_daftar,
+    p.status AS status_pendaftaran,
+    ps.nim,
+    ps.nama AS nama_peserta,
+    ps.prodi,
+    ps.no_hp,
+    kls.nama_kelas,
+    krs.kode_kursus,
+    krs.nama_kursus,
+    krs.level,
+    krs.biaya,
+    ins.nama AS nama_instruktur
+FROM pendaftaran p
+INNER JOIN peserta ps
+    ON p.id_peserta = ps.id_peserta
+INNER JOIN kelas kls
+    ON p.id_kelas = kls.id_kelas
+INNER JOIN kursus krs
+    ON kls.id_kursus = krs.id_kursus
+INNER JOIN instruktur ins
+    ON kls.id_instruktur = ins.id_instruktur
+WHERE p.id_pendaftaran = $P{P_ID_PENDAFTARAN}
+ORDER BY p.id_pendaftaran]]>
+    </queryString>
+
+    <field name="id_pendaftaran" class="java.lang.Integer"/>
+    <field name="tanggal_daftar" class="java.sql.Date"/>
+    <field name="status_pendaftaran" class="java.lang.String"/>
+    <field name="nim" class="java.lang.String"/>
+    <field name="nama_peserta" class="java.lang.String"/>
+    <field name="prodi" class="java.lang.String"/>
+    <field name="no_hp" class="java.lang.String"/>
+    <field name="nama_kelas" class="java.lang.String"/>
+    <field name="kode_kursus" class="java.lang.String"/>
+    <field name="nama_kursus" class="java.lang.String"/>
+    <field name="level" class="java.lang.String"/>
+    <field name="biaya" class="java.math.BigDecimal"/>
+    <field name="nama_instruktur" class="java.lang.String"/>
+
+    <title>
+        <band height="72">
+            <staticText>
+                <reportElement x="0" y="4" width="535" height="30"/>
+                
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[LAPORAN PENDAFTARAN KURSUS]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="34" width="535" height="18"/>
+                
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="11"/>
+                </textElement>
+                <text><![CDATA[SIKURSUS Desktop - Pemrograman Berorientasi Objek]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true">
+                <reportElement x="0" y="52" width="535" height="16"/>
+                
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["ID Pendaftaran: " + $P{P_ID_PENDAFTARAN}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+
+    <columnHeader>
+        <band height="24">
+            <staticText>
+                <reportElement mode="Opaque" backcolor="#F7CF5F" x="0" y="0" width="28" height="24"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#7A5C00"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ID]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" backcolor="#F7CF5F" x="28" y="0" width="58" height="24"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#7A5C00"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[NIM]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" backcolor="#F7CF5F" x="86" y="0" width="95" height="24"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#7A5C00"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Peserta]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" backcolor="#F7CF5F" x="181" y="0" width="52" height="24"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#7A5C00"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Kelas]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" backcolor="#F7CF5F" x="233" y="0" width="105" height="24"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#7A5C00"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Kursus]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" backcolor="#F7CF5F" x="338" y="0" width="90" height="24"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#7A5C00"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Instruktur]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" backcolor="#F7CF5F" x="428" y="0" width="58" height="24"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#7A5C00"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Tanggal]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" backcolor="#F7CF5F" x="486" y="0" width="49" height="24"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#7A5C00"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Status]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="42">
+            <textField isBlankWhenNull="true">
+                <reportElement x="0" y="0" width="28" height="22"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#999999"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{id_pendaftaran}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="28" y="0" width="58" height="22"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#999999"/></box>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nim}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="86" y="0" width="95" height="22"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#999999"/></box>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nama_peserta}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="181" y="0" width="52" height="22"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#999999"/></box>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nama_kelas}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="233" y="0" width="105" height="22"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#999999"/></box>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nama_kursus}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="338" y="0" width="90" height="22"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#999999"/></box>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nama_instruktur}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="428" y="0" width="58" height="22"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#999999"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd-MM-yyyy").format($F{tanggal_daftar})]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="486" y="0" width="49" height="22"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#999999"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{status_pendaftaran}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement mode="Opaque" backcolor="#FFF8DC" x="0" y="22" width="535" height="20"/>
+                <box padding="3"><pen lineWidth="0.5" lineColor="#999999"/></box>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Prodi: " + $F{prodi} + "   |   No. HP: " + ($F{no_hp} == null || $F{no_hp}.isEmpty() ? "-" : $F{no_hp}) + "   |   Kode: " + $F{kode_kursus} + "   |   Level: " + $F{level} + "   |   Biaya: Rp " + new java.text.DecimalFormat("#,##0").format($F{biaya})]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <pageFooter>
+        <band height="24">
+            <textField isBlankWhenNull="true">
+                <reportElement x="0" y="4" width="267" height="16"/>
+                
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Dicetak: " + new java.text.SimpleDateFormat("dd-MM-yyyy HH:mm").format(new java.util.Date())]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="268" y="4" width="267" height="16"/>
+                
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Halaman " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+</jasperReport>
